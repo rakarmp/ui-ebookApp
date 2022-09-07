@@ -1,4 +1,4 @@
-import 'package:elib/screens/home/home.dart';
+import 'package:elib/screens/home/home_list_book.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,7 +41,7 @@ class _NavigationExampleState extends State<NavigationExample> {
           ),
           NavigationDestination(
             icon: Icon(Icons.article_rounded),
-            label: 'Books',
+            label: 'List Books',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.account_circle),
@@ -53,10 +53,9 @@ class _NavigationExampleState extends State<NavigationExample> {
       body: <Widget>[
         Container(
           alignment: Alignment.center,
-          
         ),
         Container(
-          child: HomeApp(),
+          child: ListBook(),
         ),
         Container(
           color: Colors.blue,

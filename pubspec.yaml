@@ -11,8 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.2
+  http: ^0.13.4
+  getwidget: ^2.0.4
+  splash_screen_view: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +27,4 @@ flutter:
   uses-material-design: true
 
 assets:
-- assets/image/img1.jpg
-- assets/image/img2.jpg
-
+- assets/image/splash.png
