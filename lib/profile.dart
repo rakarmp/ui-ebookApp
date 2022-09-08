@@ -1,25 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(  
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -32,7 +12,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Profile Challenge 01',
+      title: 'Profile',
       home: Scaffold(
         body: ListView(
           children: <Widget>[
@@ -40,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 250,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.purple, Colors.deepOrange.shade300],
+                  colors: [Colors.blue, Colors.blue],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   stops: [0.5, 0.9],
@@ -53,15 +33,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        minRadius: 60.0,
-                        child: CircleAvatar(
-                          radius: 55.0,
-                          backgroundImage:
-                              AssetImage('img/profile.png'),
-                        ),
+                      ClipOval(
+                      child: Image.asset(
+                        'img/pp.jpg',
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
                       ),
+                    ),
                     ],
                   ),
                   SizedBox(
@@ -71,14 +50,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Al Katiri',
                     style: TextStyle(
                       fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 12, 12, 12),
                     ),
                   ),
                   Text(
                     'Student',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 17, 17, 17),
                       fontSize: 25,
                     ),
                   ),
@@ -91,15 +70,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   ListTile(
                     title: Text(
-                      'Email',
+                      'Nama',
                       style: TextStyle(
-                        color: Colors.deepOrange,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     subtitle: Text(
-                      'Alkatiri@gmail.com',
+                      'Alkatiri',
                       style: TextStyle(
                         fontSize: 18
                       ),
@@ -108,15 +87,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Divider(),
                   ListTile(
                     title: Text(
-                      'GitHub',
+                      'Alamat',
                       style: TextStyle(
-                        color: Colors.deepOrange,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     subtitle: Text(
-                      'https://github.com/Katiri',
+                      'Bandung',
                       style: TextStyle(
                         fontSize: 18
                       ),
@@ -125,15 +104,83 @@ class _MyHomePageState extends State<MyHomePage> {
                   Divider(),
                   ListTile(
                     title: Text(
-                      'Linkedin',
+                      'Tempat Lahir',
                       style: TextStyle(
-                        color: Colors.deepOrange,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     subtitle: Text(
-                      'www.linkedin.com/in/Katirzzz-834a1755',
+                      'Bandung',
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Tanggal Lahir',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '08-12-04',
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Agama',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Islam',
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Nomor Telpon',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '+62-878-774-652-93',
+                      style: TextStyle(
+                        fontSize: 18
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Nomor Rek',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '1029318189',
                       style: TextStyle(
                         fontSize: 18
                       ),
@@ -145,6 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+        debugShowCheckedModeBanner: false,
     );
   }
 }
