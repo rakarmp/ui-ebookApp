@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
        primarySwatch: Colors.blue,
      ),
      home: HomePage(),
+     debugShowCheckedModeBanner: false,
    );
  }
 }
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
            ),
              SizedBox(height: 20,),
             MaterialButton(
-             padding: EdgeInsets.all(15),
+             padding: EdgeInsets.all(20),
              minWidth: 260,
              color: Colors.blue,
              textColor: Colors.white,
