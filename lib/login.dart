@@ -1,3 +1,4 @@
+import 'package:elib/page/profile_page.dart';
 import 'package:elib/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,7 @@ class Login extends StatelessWidget {
               if (_formKey.currentState!.validate()) {
 
                 Navigator.push(
-                   context, MaterialPageRoute(builder: (context) => Profile()));
+                   context, MaterialPageRoute(builder: (context) => ProfilePage()));
               }
 
              },

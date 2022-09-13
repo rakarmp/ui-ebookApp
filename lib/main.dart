@@ -1,67 +1,40 @@
-import 'package:flutter/material.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:elib/login.dart';
-import 'package:elib/signup.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:elib/page/profile_page.dart';
+import 'package:elib/themes.dart';
+import 'package:elib/utils/user_preferences.dart';
 
-void main() => runApp(MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  await UserPreferences.init();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
- // This widget is the root of your application.
- @override
- Widget build(BuildContext context) {
-   return MaterialApp(
-     title: 'Login Regiter',
-     theme: ThemeData(
-       primarySwatch: Colors.blue,
-     ),
-     home: HomePage(),
-     debugShowCheckedModeBanner: false,
-   );
- }
-}
-class HomePage extends StatelessWidget {
- Widget build(BuildContext context) {
-   return Scaffold(
-     backgroundColor: Colors.white,
-     body: Center(
-       child: Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: <Widget>[
-           Icon(Icons.android, color: Colors.blue, size: 45,),
-           SizedBox(height: 200,),
-           Text("Welcome to ELibrary",
-               style: TextStyle(color: Colors.blue, fontSize: 22)),
-           SizedBox(height: 10,),
-           Text("Get real-time updates about what",
-             style: TextStyle(color: Colors.blue, fontSize: 18),),
-           Text("maters to you",
-             style: TextStyle(color: Colors.blue, fontSize: 18),),
-           SizedBox(height: 20,),
-           MaterialButton(
-             padding: EdgeInsets.all(20),
-             minWidth: 260,
-             color: Colors.blue,
-             textColor: Colors.white,
-             child: Text("SignUp",
-               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-             onPressed: () {
-               Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-             },
-           ),
-             SizedBox(height: 20,),
-            MaterialButton(
-             padding: EdgeInsets.all(20),
-             minWidth: 260,
-             color: Colors.blue,
-             textColor: Colors.white,
-             child: Text("Login",
-               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-             onPressed: () {
-               Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-             },
-           )
-         ],
-       ),
-     ),
-   );
- }
+  static final String title = 'User Profile';
+
+  @override
+  Widget build(BuildContext context) {
+    final user = UserPreferences.getUser();
+
+    return ThemeProvider(
+      initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
+      child: Builder(
+        builder: (context) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: Theme.of(context),
+          title: title,
+          home: Login(),
+        ),
+      ),
+    );
+  }
 }
