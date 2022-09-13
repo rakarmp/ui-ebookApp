@@ -1,5 +1,3 @@
-import 'package:elib/screens/home/home_screen.dart';
-import 'package:elib/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ElibMobile',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.blue,
       ),
-      home: SplashScreenPage(),
+      
     );
   }
 }
