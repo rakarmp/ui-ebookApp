@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:elib/screens/landing/landing_screen.dart';
 import 'package:elib/main.dart';
-import 'package:elib/screens/home/home_view.dart';
+// import 'package:elib/screens/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -26,7 +27,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(durasiSplash, () {
       //pindah ke halaman home
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
-        return Home();
+        return LandingPage();
       }));
     });
   }
@@ -36,11 +37,12 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Image.network('https://see.fontimg.com/api/renderfont4/3z8d8/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Um9vc-6AnGXugJpd/rooster-personal-use.png',
-        width: 200,
-        height: 88,
+        child: Image.network(
+          'https://see.fontimg.com/api/renderfont4/3z8d8/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Um9vc-6AnGXugJpd/rooster-personal-use.png',
+          width: 200,
+          height: 88,
+        ),
       ),
-    ),
     );
   }
 }
