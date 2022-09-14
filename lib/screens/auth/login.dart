@@ -1,7 +1,7 @@
-import 'package:elib/screens/profile/profile_screen.dart';
-import 'package:elib/screens/auth/forgot.dart';
-import 'package:elib/screens/auth/signup.dart';
-import 'package:elib/screens/home/home_view.dart';
+import 'package:elibmobile/screens/profile/profile_screen.dart';
+import 'package:elibmobile/screens/auth/forgot.dart';
+import 'package:elibmobile/screens/auth/signup.dart';
+import 'package:elibmobile/screens/home/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

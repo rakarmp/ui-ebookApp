@@ -1,5 +1,5 @@
-import 'package:elib/data.dart';
-import 'package:elib/screens/home/component/rating_bar.dart';
+import 'package:elibmobile/data.dart';
+import 'package:elibmobile/screens/home/component/rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
@@ -46,7 +46,10 @@ class Detail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         text(book.title,
-            size: 16, isBold: true,color: Colors.white70, padding: EdgeInsets.only(top: 16.0)),
+            size: 16,
+            isBold: true,
+            color: Colors.white70,
+            padding: EdgeInsets.only(top: 16.0)),
         text(
           'oleh ${book.writer}',
           color: Colors.white30,
@@ -61,7 +64,7 @@ class Detail extends StatelessWidget {
               color: Colors.white70,
               padding: EdgeInsets.only(right: 8.0),
             ),
-            RatingBar(rating: book.rating,color: Colors.white70)
+            RatingBar(rating: book.rating, color: Colors.white70)
           ],
         ),
         SizedBox(height: 32.0),

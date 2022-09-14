@@ -1,5 +1,5 @@
-import 'package:elib/screens/home/home_screen.dart';
-import 'package:elib/screens/splash/splash_screen.dart';
+import 'package:elibmobile/screens/home/home_screen.dart';
+import 'package:elibmobile/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

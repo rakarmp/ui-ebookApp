@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:elib/screens/landing/landing_screen.dart';
-import 'package:elib/main.dart';
-// import 'package:elib/screens/home/home_view.dart';
+import 'package:elibmobile/screens/landing/landing_screen.dart';
+import 'package:elibmobile/main.dart';
+// import 'package:elibmobile/screens/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenPage extends StatefulWidget {

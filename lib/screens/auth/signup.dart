@@ -1,4 +1,4 @@
-import 'package:elib/screens/auth/login.dart';
+import 'package:elibmobile/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(SignUp());
