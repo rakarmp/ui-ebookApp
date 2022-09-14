@@ -135,7 +135,7 @@ class BookDetail extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Read Now',
+            'Baca Sekarang',
             style: semiBoldText20.copyWith(color: whiteColor),
           ),
         ),

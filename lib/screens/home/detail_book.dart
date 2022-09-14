@@ -1,5 +1,5 @@
 import 'package:elibmobile/data.dart';
-import 'package:elibmobile/screens/home/component/rating_bar.dart';
+import 'package:elibmobile/screens/home/components/rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
