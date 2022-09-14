@@ -1,9 +1,10 @@
-import 'package:elib/screens/profile/profile_screen.dart';
-import 'package:elib/screens/auth/forgot.dart';
-import 'package:elib/screens/auth/signup.dart';
-import 'package:elib/screens/home/home_view.dart';
+import 'package:elibmobile/screens/home/home.dart';
+import 'package:elibmobile/page/profile_page.dart';
+import 'package:elibmobile/screens/profile/profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:elibmobile/screens/auth/signup.dart';
+import 'package:elibmobile/screens/auth/forgot.dart';
 
 void main() => runApp(Login());
 
@@ -19,10 +20,7 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Image.asset('assets/image/splash.png'
-                  // height : 300,
-                  // width: 200,
-                  ),
+              child: Image.asset('assets/splash/splash.png'),
             ),
             Container(
               padding: EdgeInsets.all(10),

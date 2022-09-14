@@ -1,4 +1,4 @@
-import 'package:elib/screens/auth/login.dart';
+import 'package:elibmobile/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Forgot());
@@ -17,7 +17,7 @@ class Forgot extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Image.asset(
-                'assets/image/splash.png',
+                'assets/splash/splash.png',
                 // height : 300,
                 // width: 200,
               ),

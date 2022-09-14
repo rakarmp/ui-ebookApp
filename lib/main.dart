@@ -1,21 +1,46 @@
-import 'package:elib/screens/home/home_screen.dart';
-import 'package:elib/screens/splash/splash_screen.dart';
-import 'package:elib/screens/landing/landing_screen.dart';
+import 'package:elibmobile/screens/bottom_nav_bar.dart';
+import 'package:elibmobile/screens/home/home_page.dart';
+import 'package:elibmobile/screens/home/pages/book_details.dart';
+// import 'package:elibmobile/screens/splash/splash_screen.dart';
+import 'package:elibmobile/screens/landing/landing_screen.dart';
+import 'package:elibmobile/screens/splash/splash_screen.dart';
+import 'package:elibmobile/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:elibmobile/utils/user_preferences.dart';
+import 'package:flutter/services.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 
-void main() => runApp(MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  await UserPreferences.init();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
+  static final String title = 'User Profile';
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ElibMobile',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
+    // return MaterialApp(
+    //   home: SplashPage(),
+    //   debugShowCheckedModeBanner: false,
+    // );
+    final user = UserPreferences.getUser();
+
+    return ThemeProvider(
+      initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
+      child: Builder(
+        builder: (context) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: Theme.of(context),
+          title: title,
+          home: SplashPage(),
+        ),
       ),
-      home: SplashScreenPage(),
     );
   }
 }
