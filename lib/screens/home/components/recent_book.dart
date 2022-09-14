@@ -44,7 +44,7 @@ class RecentBook extends StatelessWidget {
                 animation: true,
                 percent: 0.5,
                 circularStrokeCap: CircularStrokeCap.round,
-                progressColor: greenColor,
+                progressColor: blueColor,
               ),
               Text(
                 '50% Completed',

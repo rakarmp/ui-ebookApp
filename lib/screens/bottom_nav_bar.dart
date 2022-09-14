@@ -39,7 +39,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               child: Image.asset(
                 'assets/icons/icon-home.png',
                 width: 20,
-                color: _selectedIndex == 0 ? greenColor : greyColor,
+                color: _selectedIndex == 0 ? blueColor : greyColor,
               ),
             ),
             label: '',
@@ -50,7 +50,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               child: Image.asset(
                 'assets/icons/icon-save-nav.png',
                 width: 14,
-                color: _selectedIndex == 1 ? greenColor : greyColor,
+                color: _selectedIndex == 1 ? blueColor : greyColor,
               ),
             ),
             label: '',
@@ -61,7 +61,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               child: Image.asset(
                 'assets/icons/icon-user.png',
                 width: 18,
-                color: _selectedIndex == 2 ? greenColor : greyColor,
+                color: _selectedIndex == 2 ? blueColor : greyColor,
               ),
             ),
             label: '',

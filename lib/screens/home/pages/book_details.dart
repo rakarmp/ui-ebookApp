@@ -115,7 +115,7 @@ class BookDetail extends StatelessWidget {
           height: 50,
           width: 50,
           padding: EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(color: greenColor, shape: BoxShape.circle),
+          decoration: BoxDecoration(color: blueColor, shape: BoxShape.circle),
           child: Image.asset('assets/icons/icon-save.png'),
         ),
       );
@@ -129,7 +129,7 @@ class BookDetail extends StatelessWidget {
         child: TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
-            backgroundColor: greenColor,
+            backgroundColor: blueColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -177,7 +177,7 @@ class BookDetail extends StatelessWidget {
                 SizedBox(width: 5),
                 Text(
                   'Free Access',
-                  style: mediumText14.copyWith(color: greenColor),
+                  style: mediumText14.copyWith(color: blueColor),
                 ),
               ],
             ),
