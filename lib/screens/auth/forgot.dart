@@ -17,7 +17,7 @@ class Forgot extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Image.asset(
-                'assets/image/splash.png',
+                'assets/splash/splash.png',
                 // height : 300,
                 // width: 200,
               ),

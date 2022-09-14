@@ -1,3 +1,4 @@
+import 'package:elibmobile/page/profile_page.dart';
 import 'package:elibmobile/screens/home/home_page.dart';
 import 'package:elibmobile/screens/save/save_page.dart';
 import 'package:elibmobile/screens/user/user_page.dart';
@@ -18,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final _screens = [
     HomePage(),
     SavePage(),
-    UserPage(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
