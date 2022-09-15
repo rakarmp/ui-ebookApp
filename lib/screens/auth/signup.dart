@@ -1,5 +1,6 @@
 import 'package:elibmobile/screens/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:elibmobile/themes.dart';
 
 void main() => runApp(SignUp());
 
@@ -22,58 +23,115 @@ class SignUp extends StatelessWidget {
                 // width: 200,
               ),
             ),
+             SizedBox(
+              height: 20,
+            ),
             Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'User Name',
-                ),
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Nama Pengguna',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Username cannot be empty';
+                    return 'Nama Tidak Boleh Kosong';
                   }
                   return null;
                 },
               ),
             ),
+            
             SizedBox(
               height: 10,
             ),
             Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Email cannot be empty';
-                  }
-                  return null;
-                },
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Email',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
               ),
             ),
+          ),
+         validator: (value) {
+  if(value == null || value.isEmpty || !value.contains('@') || !value.contains('.')){
+    return 'Email Salah';
+  }
+  return null;
+},
+        )
+             ),
             SizedBox(
               height: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Password cannot be empty';
-                  }
-                  return null;
-                },
+                      Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Kata Sandi',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
               ),
             ),
+          ),
+          validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Kata Sandi tidak boleh kosong';
+                  }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
+                  return null;
+                },
+        )
+             ),
+            SizedBox(
+              height: 10,
+            ),
+                      Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Konfirmasi Kata Sandi',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
+          validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Kata Sandi tidak boleh kosong';
+                  }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
+                  return null;
+                },
+        )
+             ),
             SizedBox(
               height: 20,
             ),
@@ -81,7 +139,7 @@ class SignUp extends StatelessWidget {
               padding: EdgeInsets.all(20),
               minWidth: 250,
               child: Text(
-                "SignUp",
+                "Daftar",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
@@ -93,7 +151,7 @@ class SignUp extends StatelessWidget {
               },
             ),
             TextButton(
-              child: Text("Have Account? Login",
+              child: Text("Sudah Punya Akun? Masuk",
                   style: TextStyle(color: Colors.blue)),
               onPressed: () {
                 Navigator.push(
