@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  color: greenColor,
+                  color: blueColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
           margin: EdgeInsets.only(top: 30, right: 12),
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           decoration: BoxDecoration(
-            color: _isSelected == index ? greenColor : transParentColor,
+            color: _isSelected == index ? blueColor : transParentColor,
             borderRadius: BorderRadius.circular(6),
           ),
           child: Text(
