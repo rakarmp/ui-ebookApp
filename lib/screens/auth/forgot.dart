@@ -1,5 +1,6 @@
 import 'package:elibmobile/screens/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:elibmobile/themes.dart';
 
 void main() => runApp(Forgot());
 
@@ -23,58 +24,94 @@ class Forgot extends StatelessWidget {
               ),
             ),
             SizedBox(
+              height: 20,
+            ),
+             Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Kata Sandi Sebelumnya',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
+          validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Kata Sandi tidak boleh kosong';
+                  }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
+                  return null;
+                },
+        )
+             ),
+            SizedBox(
               height: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Old Password',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Password cannot be empty';
-                  }
-                  return null;
-                },
+             Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Kata Sandi Baru',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'New Password',
-                ),
-                validator: (value) {
+          ),
+          validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Password cannot be empty';
+                    return 'Kata Sandi tidak boleh kosong';
                   }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
                   return null;
                 },
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Confirm Password',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Password cannot be empty';
-                  }
-                  return null;
-                },
-              ),
-            ),
+        )
+             ),
             SizedBox(
-              height: 20,
+              height: 10,
+            ),
+             Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Konfirmasi Kata Sandi',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
+          validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Kata Sandi tidak boleh kosong';
+                  }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
+                  return null;
+                },
+        )
+             ),
+            SizedBox(
+              height: 10,
             ),
             MaterialButton(
               padding: EdgeInsets.all(20),

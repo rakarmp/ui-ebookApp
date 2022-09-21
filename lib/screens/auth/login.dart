@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:elibmobile/screens/auth/signup.dart';
 import 'package:elibmobile/screens/auth/forgot.dart';
+import 'package:elibmobile/themes.dart';
 
 void main() => runApp(Login());
 
@@ -22,41 +23,62 @@ class Login extends StatelessWidget {
             Container(
               child: Image.asset('assets/splash/splash.png'),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Input Username',
-                  labelText: 'User Name',
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'username cannot be empty';
-                  }
-                  return null;
-                },
+            SizedBox(
+              height: 20,
+            ),
+             Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Email',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
               ),
             ),
-            SizedBox(
+          ),
+         validator: (value) {
+  if(value == null || value.isEmpty || !value.contains('@') || !value.contains('.')){
+    return 'Email Salah';
+  }
+  return null;
+},
+        )
+             ),
+             SizedBox(
               height: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Input Password',
-                  labelText: 'Password',
-                ),
-                validator: (value) {
+             Container(
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextFormField(
+             obscureText: true,
+          decoration: InputDecoration(
+            hintText: 'Kata Sandi',
+            hintStyle: mediumText12.copyWith(color: greyColor),
+            filled: true,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+          ),
+          validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Password cannot be empty';
+                    return 'Kata Sandi tidak boleh kosong';
                   }
+                   if (value.length < 8) {
+        return 'Kata Sandi minimal 8 karakter ';
+      }
                   return null;
                 },
-              ),
+        )
+             ),
+            SizedBox(
+              height: 10,
             ),
             TextButton(
               onPressed: () {
@@ -64,18 +86,18 @@ class Login extends StatelessWidget {
                     context, MaterialPageRoute(builder: (context) => Forgot()));
               },
               child: const Text(
-                'Forgot Password ?',
+                'Lupa Sandi ?'
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             MaterialButton(
               padding: EdgeInsets.all(20),
-              minWidth: 250,
+              minWidth: 240,
               color: Colors.blue,
               child: Text(
-                "Login",
+                "Masuk",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
@@ -90,7 +112,7 @@ class Login extends StatelessWidget {
             ),
             TextButton(
               child: Text(
-                "Not a member? Signup now",
+                "Belum Punya Akun? Daftar",
                 style: TextStyle(color: Colors.blue),
               ),
               onPressed: () {
