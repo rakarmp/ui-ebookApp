@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     return EasySplashScreen(
       logo: Image.asset('assets/splash/splash.png'),
       backgroundColor: Colors.white,
-      navigator: Login(),
+      navigator: Home(),
       durationInSeconds: 5,
     );
   }

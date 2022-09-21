@@ -1,4 +1,6 @@
+import 'package:elibmobile/configs/api_services.dart';
 import 'package:elibmobile/models/book.dart';
+import 'package:elibmobile/models/categories.dart';
 import 'package:elibmobile/screens/home/components/recent_book.dart';
 import 'package:elibmobile/screens/home/components/trending_book.dart';
 import 'package:elibmobile/themes.dart';
@@ -13,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  ApiService apiService = ApiService();
+  late List<Categories>? categories = [];
   List<String> _categories = [
     'All Books',
     'Comic',
@@ -23,6 +27,16 @@ class _HomePageState extends State<HomePage> {
 
   int _isSelected = 0;
   @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    categories = (await apiService.fetchCategories())!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
   Widget build(BuildContext context) {
     Widget header() {
       return Container(
@@ -115,42 +129,75 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget categories(int index) {
-      return InkWell(
-        onTap: () {
-          setState(() {
-            _isSelected = index;
-          });
-        },
-        child: Container(
-          margin: EdgeInsets.only(top: 30, right: 12),
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          decoration: BoxDecoration(
-            color: _isSelected == index ? blueColor : transParentColor,
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Text(
-            _categories[index],
-            style: semiBoldText14.copyWith(
-                color: _isSelected == index ? whiteColor : greyColor),
-          ),
-        ),
-      );
-    }
+    // Widget categories(index) {
+    //   return InkWell(
+    //     onTap: () {
+    //       setState(() {
+    //         _isSelected = index;
+    //       });
+    //     },
+    //     child: Expanded(
+    //         child: Container(
+    //       margin: EdgeInsets.only(top: 30, right: 12),
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+    //       decoration: BoxDecoration(
+    //         color: _isSelected == index ? blueColor : transParentColor,
+    //         borderRadius: BorderRadius.circular(6),
+    //       ),
+    //       child: Text(
+    //         index,
+    //         style: semiBoldText14.copyWith(
+    //             color: _isSelected == index ? whiteColor : greyColor),
+    //       ),
+    //     )),
+    //   );
+    // }
 
-    Widget listCategories() {
-      return SingleChildScrollView(
-        padding: EdgeInsets.only(left: 30),
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: _categories
-              .asMap()
-              .entries
-              .map((MapEntry map) => categories(map.key))
-              .toList(),
-        ),
-      );
-    }
+    // Widget listCategories() {
+    //   return SingleChildScrollView(
+    //     padding: EdgeInsets.only(left: 30),
+    //     scrollDirection: Axis.horizontal,
+    //     child: Row(
+    //       children: _categories
+    //           .asMap()
+    //           .entries
+    //           .map((MapEntry map) => categories(map.key))
+    //           .toList(),
+    //     ),
+    //   );
+    //   // return categories == null || categories!.isEmpty
+    //   //     ? const Center(
+    //   //         child: CircularProgressIndicator(),
+    //   //       )
+    //   //     : ListView.builder(
+    //   //         itemCount: categories!.length,
+    //   //         itemBuilder: (context, index) {
+    //   //           return Card(
+    //   //             child: Column(
+    //   //               children: [
+    //   //                 Row(
+    //   //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   //                   children: [
+    //   //                     Text(categories![index].id.toString()),
+    //   //                     Text(categories![index].username),
+    //   //                   ],
+    //   //                 ),
+    //   //                 const SizedBox(
+    //   //                   height: 20.0,
+    //   //                 ),
+    //   //                 Row(
+    //   //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   //                   children: [
+    //   //                     Text(categories![index].email),
+    //   //                     Text(categories![index].website),
+    //   //                   ],
+    //   //                 ),
+    //   //               ],
+    //   //             ),
+    //   //           );
+    //   //         },
+    //   //       );
+    // }
 
     Widget trendingBook() {
       return SingleChildScrollView(
@@ -201,7 +248,47 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          listCategories(),
+          // listCategories(),
+          Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.height * 0.1,
+            child: categories == null || categories!.isEmpty
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories!.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            _isSelected = index;
+                          });
+                        },
+                        child: Expanded(
+                            child: Container(
+                          margin: EdgeInsets.only(top: 30, right: 12),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: _isSelected == index
+                                ? blueColor
+                                : transParentColor,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            categories![index].namaKategori.toString(),
+                            style: semiBoldText14.copyWith(
+                                color: _isSelected == index
+                                    ? whiteColor
+                                    : greyColor),
+                          ),
+                        )),
+                      );
+                    },
+                  ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 30, top: 30),
             child: Text(
