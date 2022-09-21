@@ -43,10 +43,6 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.symmetric(horizontal: 30),
         child: Row(
           children: [
-            Container(
-              width: 50,
-              height: 50,
-            ),
             SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,11 +57,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            Spacer(),
-            Image.asset(
-              'assets/icons/icon-menu.png',
-              width: 18,
-            ),
+            // Spacer(),
+            // Image.asset(
+            //   'assets/icons/icon-menu.png',
+            //   width: 18,
+            // ),
           ],
         ),
       );
@@ -74,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     Widget searchField() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 30),
-        child: TextField(
+        child: TextFormField(
           decoration: InputDecoration(
             hintText: 'Cari Buku Favorite Kamu',
             hintStyle: mediumText12.copyWith(color: greyColor),
