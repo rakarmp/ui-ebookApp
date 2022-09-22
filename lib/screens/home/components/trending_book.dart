@@ -20,7 +20,7 @@ class TrendingBook extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(context, BookDetail.nameRoute, arguments: {
               'imageUrl': info.imageUrl,
-              'writers': info.writers,
+              'writers': info.artists,
               'title': info.title,
             });
           },
@@ -41,7 +41,7 @@ class TrendingBook extends StatelessWidget {
         ),
         SizedBox(height: 8),
         Text(
-          info.writers,
+          info.artists,
           style: mediumText12.copyWith(color: greyColor),
         ),
         Text(

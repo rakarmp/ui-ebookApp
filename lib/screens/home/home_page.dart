@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
               .entries
               .map(
                 (MapEntry map) => TrendingBook(
-                  info: bookLists[map.key],
+                  info: bookLists[index],
                 ),
               )
               .toList(),
