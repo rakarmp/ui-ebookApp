@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:elibmobile/models/book.dart';
 
 class ApiBook {
-  Future<List<BookList>?> fetchCategories() async {
-    final response = await http.get(Uri.parse(""));
+  Future<List<BookList>?> fetchBook() async {
+    final response = await http.get(Uri.parse("http://elib-api.khansia.co.id:8100/api/berkas"));
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);

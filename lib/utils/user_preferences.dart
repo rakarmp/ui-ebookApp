@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:elibmobile/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:elibmobile/model/user.dart';
 
 class UserPreferences {
   static late SharedPreferences _preferences;

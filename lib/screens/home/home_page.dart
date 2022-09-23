@@ -1,3 +1,4 @@
+import 'package:elibmobile/configs/api_book.dart';
 import 'package:elibmobile/configs/api_services.dart';
 import 'package:elibmobile/models/book.dart';
 import 'package:elibmobile/models/categories.dart';
@@ -5,6 +6,7 @@ import 'package:elibmobile/screens/home/components/recent_book.dart';
 import 'package:elibmobile/screens/home/components/trending_book.dart';
 import 'package:elibmobile/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class HomePage extends StatefulWidget {
   static const nameRoute = '/homePage';
@@ -16,7 +18,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   ApiService apiService = ApiService();
+  ApiBook apiBook = ApiBook();
   late List<Categories>? categories = [];
+  late List<BookList>? book = [];
   List<String> _categories = [
     'All Books',
     'Comic',
@@ -34,6 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   void _getData() async {
     categories = (await apiService.fetchCategories())!;
+    book = (await apiBook.fetchBook())!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
@@ -196,21 +201,30 @@ class _HomePageState extends State<HomePage> {
     // }
 
     Widget trendingBook() {
-      return SingleChildScrollView(
+      return ListView.builder(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Row(
-          children: bookLists
-              .asMap()
-              .entries
-              .map(
-                (MapEntry map) => TrendingBook(
-                  info: bookLists[index],
-                ),
-              )
-              .toList(),
-        ),
+        itemCount: book!.length,
+        itemBuilder: (context, index) {
+          return TrendingBook(
+            info: book![index],
+          );
+        },
       );
+      // return SingleChildScrollView(
+      //   scrollDirection: Axis.horizontal,
+      //   padding: EdgeInsets.symmetric(horizontal: 30),
+      //   child: Row(
+      //     children: bookLists
+      //         .asMap()
+      //         .entries
+      //         .map(
+      //           (MapEntry map) => TrendingBook(
+      //             info: bookLists[index],
+      //           ),
+      //         )
+      //         .toList(),
+      //   ),
+      // );
     }
 
     return Scaffold(
@@ -292,7 +306,15 @@ class _HomePageState extends State<HomePage> {
               style: semiBoldText16.copyWith(color: blackColor),
             ),
           ),
-          trendingBook(),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.1,
+            height: MediaQuery.of(context).size.height * 1,
+            child: categories == null || categories!.isEmpty
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                :
+          trendingBook(), ),
           SizedBox(height: 30),
         ],
       ),
