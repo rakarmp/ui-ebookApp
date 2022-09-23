@@ -1,3 +1,4 @@
+import 'package:elibmobile/configs/api_services.dart';
 import 'package:elibmobile/screens/home/home.dart';
 import 'package:elibmobile/page/profile_page.dart';
 import 'package:elibmobile/screens/profile/profile_screen.dart';
@@ -6,11 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:elibmobile/screens/auth/signup.dart';
 import 'package:elibmobile/screens/auth/forgot.dart';
 
-void main() => runApp(Login());
+class Login extends StatefulWidget {
+  const Login({super.key});
 
-class Login extends StatelessWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  ApiService apiService = ApiService();
   final _formKey = GlobalKey<FormState>();
-
+  final username = TextEditingController();
+  final password = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -25,6 +34,7 @@ class Login extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: TextFormField(
+                controller: username,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Input Username',
@@ -44,6 +54,7 @@ class Login extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: TextFormField(
+                controller: password,
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -81,10 +92,18 @@ class Login extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Home()));
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (context) =>
+                  //     ));
+                  dynamic dataRespone =
+                      await apiService.login(username.text, password.text);
+                  if (dataRespone == 200) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                  }
+                  print(dataRespone);
                 }
               },
             ),

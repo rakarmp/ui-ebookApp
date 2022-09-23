@@ -5,16 +5,17 @@ import 'package:elibmobile/screens/home/components/recent_book.dart';
 import 'package:elibmobile/screens/home/components/trending_book.dart';
 import 'package:elibmobile/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class HomePage extends StatefulWidget {
   static const nameRoute = '/homePage';
   const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final dataUser = GetStorage().read('user');
   ApiService apiService = ApiService();
   late List<Categories>? categories = [];
   List<String> _categories = [
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'ElibMobile App',
+                  'Hello, ' + dataUser['name'],
                   style: semiBoldText16,
                 ),
                 Text(
