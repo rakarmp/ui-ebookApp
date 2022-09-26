@@ -24,6 +24,7 @@ dependencies:
   animated_splash: ^1.0.0
     
   easy_splash_screen:
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

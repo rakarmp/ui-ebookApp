@@ -1,3 +1,4 @@
+import 'package:elibmobile/configs/api_services.dart';
 import 'package:elibmobile/screens/home/home.dart';
 import 'package:elibmobile/page/profile_page.dart';
 import 'package:elibmobile/screens/profile/profile_screen.dart';
@@ -7,11 +8,19 @@ import 'package:elibmobile/screens/auth/signup.dart';
 import 'package:elibmobile/screens/auth/forgot.dart';
 import 'package:elibmobile/themes.dart';
 
-void main() => runApp(Login());
+class Login extends StatefulWidget {
+  const Login({super.key});
 
-class Login extends StatelessWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  ApiService apiService = ApiService();
   final _formKey = GlobalKey<FormState>();
-
+  final username = TextEditingController();
+  final password = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,57 +35,60 @@ class Login extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-             Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Email',
-            hintStyle: mediumText12.copyWith(color: greyColor),
-            filled: true,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-          ),
-         validator: (value) {
-  if(value == null || value.isEmpty || !value.contains('@') || !value.contains('.')){
-    return 'Email Salah';
-  }
-  return null;
-},
-        )
-             ),
-             SizedBox(
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 30),
+                child: TextFormField(
+                  controller: username,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    hintStyle: mediumText12.copyWith(color: greyColor),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !value.contains('@') ||
+                        !value.contains('.')) {
+                      return 'Email Salah';
+                    }
+                    return null;
+                  },
+                )),
+            SizedBox(
               height: 10,
             ),
-             Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: TextFormField(
-             obscureText: true,
-          decoration: InputDecoration(
-            hintText: 'Kata Sandi',
-            hintStyle: mediumText12.copyWith(color: greyColor),
-            filled: true,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-          ),
-          validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Kata Sandi tidak boleh kosong';
-                  }
-                   if (value.length < 8) {
-        return 'Kata Sandi minimal 8 karakter ';
-      }
-                  return null;
-                },
-        )
-             ),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 30),
+                child: TextFormField(
+                  controller: password,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Kata Sandi',
+                    hintStyle: mediumText12.copyWith(color: greyColor),
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Kata Sandi tidak boleh kosong';
+                    }
+                    if (value.length < 8) {
+                      return 'Kata Sandi minimal 8 karakter ';
+                    }
+                    return null;
+                  },
+                )),
             SizedBox(
               height: 10,
             ),
@@ -85,9 +97,7 @@ class Login extends StatelessWidget {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Forgot()));
               },
-              child: const Text(
-                'Lupa Sandi ?'
-              ),
+              child: const Text('Lupa Sandi ?'),
             ),
             SizedBox(
               height: 10,
@@ -103,10 +113,18 @@ class Login extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
               ),
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Home()));
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (context) =>
+                  //     ));
+                  dynamic dataRespone =
+                      await apiService.login(username.text, password.text);
+                  if (dataRespone == 200) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                  }
+                  print(dataRespone);
                 }
               },
             ),
