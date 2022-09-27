@@ -30,30 +30,30 @@ class RecentBook extends StatelessWidget {
             width: 90,
           ),
           SizedBox(width: 18),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: semiBoldText14.copyWith(color: blackColor2),
-              ),
-              CircularPercentIndicator(
-                reverse: true,
-                radius: 50,
-                lineWidth: 7,
-                animation: true,
-                percent: 0.5,
-                circularStrokeCap: CircularStrokeCap.round,
-                progressColor: blueColor,
-              ),
-              Text(
-                '50% Completed',
-                style: mediumText12.copyWith(
-                  color: greyColorRecentBook,
-                ),
-              ),
-            ],
-          )
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text(
+          //       title,
+          //       style: semiBoldText14.copyWith(color: blackColor2),
+          //     ),
+          //     CircularPercentIndicator(
+          //       reverse: true,
+          //       radius: 50,
+          //       lineWidth: 7,
+          //       animation: true,
+          //       percent: 0.5,
+          //       circularStrokeCap: CircularStrokeCap.round,
+          //       progressColor: blueColor,
+          //     ),
+          //     Text(
+          //       '50% Completed',
+          //       style: mediumText12.copyWith(
+          //         color: greyColorRecentBook,
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );

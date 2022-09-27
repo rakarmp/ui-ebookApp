@@ -1,26 +1,43 @@
 class BookList {
-  String imageUrl;
-  String writers;
-  String title;
+  int? idBerkas;
+  String? namaBerkas;
+  String? namaKategori;
+  String? namaPenulis;
+  String? namaGambar;
 
   BookList(
-      {required this.imageUrl, required this.writers, required this.title});
+      {this.idBerkas,
+      this.namaBerkas,
+      this.namaKategori,
+      this.namaPenulis,
+      this.namaGambar});
+
+  BookList.fromJson(Map<String, dynamic> json) {
+    idBerkas = json['id_berkas'];
+    namaBerkas = json['nama_berkas'];
+    namaKategori = json['nama_kategori'];
+    namaPenulis = json['nama_penulis'];
+    namaGambar = json['nama_gambar'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id_berkas'] = this.idBerkas;
+    data['nama_berkas'] = this.namaBerkas;
+    data['nama_kategori'] = this.namaKategori;
+    data['nama_penulis'] = this.namaPenulis;
+    data['nama_gambar'] = this.namaGambar;
+    return data;
+  }
 }
 
-List<BookList> bookLists = [
-  BookList(
-    imageUrl: 'assets/images/trending_book_1.png',
-    writers: 'Guy Kawasaki',
-    title: 'Enchantment',
-  ),
-  BookList(
-    imageUrl: 'assets/images/trending_book_2.png',
-    writers: 'Aaron Mahnke',
-    title: 'Lore',
-  ),
-  BookList(
-    imageUrl: 'assets/images/trending_book_3.png',
-    writers: 'Spencer Johnson, M.D',
-    title: 'Who Moved My Cheese',
-  ),
-];
+
+//  List<BookList> bookLists = [
+//    BookList(
+//      imageUrl: 'assets/images/trending_book_1.png',
+//     //  writers: 'Guy Kawasaki',
+//      title: 'Enchantment',
+//    ),
+   
+//  ];
+

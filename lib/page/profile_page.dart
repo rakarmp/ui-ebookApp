@@ -1,6 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:elibmobile/models/user.dart';
 import 'package:flutter/material.dart';
-import 'package:elibmobile/model/user.dart';
 import 'package:elibmobile/page/edit_profile_page.dart';
 import 'package:elibmobile/utils/user_preferences.dart';
 import 'package:elibmobile/widget/appbar_widget.dart';
