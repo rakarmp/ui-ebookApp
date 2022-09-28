@@ -14,41 +14,41 @@ class TrendingBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, BookDetail.nameRoute, arguments: {
-              'imageUrl': info.namaGambar,
-              'writers': info.namaPenulis,
-              'title': info.namaBerkas,
-            });
-          },
-          child: Hero(
-            tag: 'info.namaGambar',
-            child: Container(
-              height: 160,
-              width: 110,
-              margin: EdgeInsets.only(top: 12, right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                  image: NetworkImage('${info.namaGambar}'),
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 8),
-         Text(
-           info.namaPenulis.toString(),
-           style: mediumText12.copyWith(color: greyColor),
+       crossAxisAlignment: CrossAxisAlignment.start,
+       children: [
+         InkWell(
+           onTap: () {
+             Navigator.pushNamed(context, BookDetail.nameRoute, arguments: {
+               'imageUrl': info.namaGambar,
+               'writers': info.namaPenulis,
+               'title': info.namaBerkas,
+             });
+           },
+           child: Hero(
+             tag: '${info.namaGambar}',
+             child: Container(
+               height: 140,
+               width: 90,
+               margin: EdgeInsets.only(top: 12, right: 20),
+               decoration: BoxDecoration(
+                 borderRadius: BorderRadius.circular(10),
+                   image: DecorationImage(
+                   image: NetworkImage('info.namaGambar'),
+                 ),
+               ),
+             ),
+           ),
          ),
-        Text(
-          info.namaBerkas.toString(),
-          style: semiBoldText14.copyWith(color: blackColor),
-        ),
-      ],
+         SizedBox(height: 8),
+          Text(
+            info.namaPenulis.toString(),
+            style: mediumText12.copyWith(color: greyColor),
+          ),
+         Text(
+           info.namaBerkas.toString(),
+           style: semiBoldText14.copyWith(color: blackColor),
+         ),
+       ],
     );
   }
 }

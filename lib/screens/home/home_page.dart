@@ -202,15 +202,29 @@ class _HomePageState extends State<HomePage> {
     // }
 
     Widget trendingBook() {
-      return ListView.builder(
-        scrollDirection: Axis.horizontal,
+      // return ListView.builder(
+      //   itemCount: book!.length,
+      //   itemBuilder: (context, index) {
+      //     return TrendingBook(
+      //       info: book![index],
+      //     );
+      //   },
+      // );
+
+      return GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10
+              ),
         itemCount: book!.length,
         itemBuilder: (context, index) {
-          return TrendingBook(
-            info: book![index],
+          return TrendingBook(info: book![index],
           );
         },
       );
+
       // return SingleChildScrollView(
       //   scrollDirection: Axis.horizontal,
       //   padding: EdgeInsets.symmetric(horizontal: 30),
@@ -323,10 +337,11 @@ class _HomePageState extends State<HomePage> {
                 style: semiBoldText16.copyWith(color: blackColor),
               ),
             ),
+
             Container(
-              width: MediaQuery.of(context).size.width * 0.1,
+              width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 1,
-              child: categories == null || categories!.isEmpty
+              child: book == null || book!.isEmpty
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
