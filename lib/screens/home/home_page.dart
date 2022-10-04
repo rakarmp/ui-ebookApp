@@ -12,8 +12,9 @@ import 'package:get_storage/get_storage.dart';
 class HomePage extends StatefulWidget {
   static const nameRoute = '/homePage';
   const HomePage({Key? key}) : super(key: key);
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -43,208 +44,11 @@ class _HomePageState extends State<HomePage> {
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      new GlobalKey<RefreshIndicatorState>();
+
+  @override
   Widget build(BuildContext context) {
-    Widget header() {
-      return Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: Row(
-          children: [
-            SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello, ' + dataUser['name'],
-                  style: semiBoldText16,
-                ),
-                Text(
-                  'Elibrary',
-                  style: regularText14.copyWith(color: greyColor),
-                ),
-              ],
-            ),
-            // Spacer(),
-            // Image.asset(
-            //   'assets/icons/icon-menu.png',
-            //   width: 18,
-            // ),
-          ],
-        ),
-      );
-    }
-
-    Widget searchField() {
-      return Container(
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Cari Buku Favorite Kamu',
-            hintStyle: mediumText12.copyWith(color: greyColor),
-            fillColor: greyColorSearchField,
-            filled: true,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-            isCollapsed: true,
-            contentPadding: EdgeInsets.all(18),
-            suffixIcon: InkWell(
-              onTap: () {},
-              child: Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: blueColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                ),
-                child: Icon(
-                  Icons.search_rounded,
-                  color: whiteColor,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
-    Widget recentBook() {
-      return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Row(
-          children: [
-            RecentBook(
-              image: 'assets/images/recentbook_1.png',
-              title: 'The Magic',
-            ),
-            SizedBox(width: 20),
-            RecentBook(
-              image: 'assets/images/recentbook_2.png',
-              title: 'The Martian',
-            ),
-          ],
-        ),
-      );
-    }
-
-    // Widget categories(index) {
-    //   return InkWell(
-    //     onTap: () {
-    //       setState(() {
-    //         _isSelected = index;
-    //       });
-    //     },
-    //     child: Expanded(
-    //         child: Container(
-    //       margin: EdgeInsets.only(top: 30, right: 12),
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-    //       decoration: BoxDecoration(
-    //         color: _isSelected == index ? blueColor : transParentColor,
-    //         borderRadius: BorderRadius.circular(6),
-    //       ),
-    //       child: Text(
-    //         index,
-    //         style: semiBoldText14.copyWith(
-    //             color: _isSelected == index ? whiteColor : greyColor),
-    //       ),
-    //     )),
-    //   );
-    // }
-
-    // Widget listCategories() {
-    //   return SingleChildScrollView(
-    //     padding: EdgeInsets.only(left: 30),
-    //     scrollDirection: Axis.horizontal,
-    //     child: Row(
-    //       children: _categories
-    //           .asMap()
-    //           .entries
-    //           .map((MapEntry map) => categories(map.key))
-    //           .toList(),
-    //     ),
-    //   );
-    //   // return categories == null || categories!.isEmpty
-    //   //     ? const Center(
-    //   //         child: CircularProgressIndicator(),
-    //   //       )
-    //   //     : ListView.builder(
-    //   //         itemCount: categories!.length,
-    //   //         itemBuilder: (context, index) {
-    //   //           return Card(
-    //   //             child: Column(
-    //   //               children: [
-    //   //                 Row(
-    //   //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //   //                   children: [
-    //   //                     Text(categories![index].id.toString()),
-    //   //                     Text(categories![index].username),
-    //   //                   ],
-    //   //                 ),
-    //   //                 const SizedBox(
-    //   //                   height: 20.0,
-    //   //                 ),
-    //   //                 Row(
-    //   //                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //   //                   children: [
-    //   //                     Text(categories![index].email),
-    //   //                     Text(categories![index].website),
-    //   //                   ],
-    //   //                 ),
-    //   //               ],
-    //   //             ),
-    //   //           );
-    //   //         },
-    //   //       );
-    // }
-
-    Widget trendingBook() {
-      // return ListView.builder(
-      //   itemCount: book!.length,
-      //   itemBuilder: (context, index) {
-      //     return TrendingBook(
-      //       info: book![index],
-      //     );
-      //   },
-      // );
-
-      return GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10
-              ),
-        itemCount: book!.length,
-        itemBuilder: (context, index) {
-          return TrendingBook(info: book![index],
-          );
-        },
-      );
-
-      // return SingleChildScrollView(
-      //   scrollDirection: Axis.horizontal,
-      //   padding: EdgeInsets.symmetric(horizontal: 30),
-      //   child: Row(
-      //     children: bookLists
-      //         .asMap()
-      //         .entries
-      //         .map(
-      //           (MapEntry map) => TrendingBook(
-      //             info: bookLists[index],
-      //           ),
-      //         )
-      //         .toList(),
-      //   ),
-      // );
-    }
-
-    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-        new GlobalKey<RefreshIndicatorState>();
-
     return Scaffold(
       backgroundColor: backgroundColor,
       body: RefreshIndicator(
@@ -253,111 +57,189 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         strokeWidth: 3.0,
         onRefresh: () async {
-          return Future.delayed(Duration(seconds: 2), (() {
+          return Future.delayed(Duration(seconds: 1), (() {
             setState(() {
               _getData();
             });
           }));
         },
         child: ListView(
-          physics: const AlwaysScrollableScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           children: [
             Container(
               padding: EdgeInsets.symmetric(vertical: 30),
               decoration: BoxDecoration(
                 color: whiteColor,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                ),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  header(),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hello, ' + dataUser['name'],
+                              style: semiBoldText16,
+                            ),
+                            Text(
+                              'Elibrary',
+                              style: regularText14.copyWith(color: greyColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 30),
-                  searchField(),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Cari Buku Favorite Kamu...',
+                        hintStyle: mediumText12.copyWith(color: greyColor),
+                        fillColor: greyColorSearchField,
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        isCollapsed: true,
+                        contentPadding: EdgeInsets.all(18),
+                        suffixIcon: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              color: blueColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.search_rounded,
+                              color: whiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  
                   SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Text(
-                      'Recent Book',
+                      'Buku Terbaru',
                       style: semiBoldText16.copyWith(color: blackColor),
                     ),
                   ),
                   SizedBox(height: 12),
-                  recentBook(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      children: [
+                        RecentBook(
+                          image: 'assets/images/recentbook_1.png',
+                          title: 'The Magic',
+                        ),
+                        SizedBox(width: 20),
+                        RecentBook(
+                          image: 'assets/images/recentbook_2.png',
+                          title: 'The Martian',
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            // listCategories(),
-            Container(
-              width: MediaQuery.of(context).size.width * 1,
-              height: MediaQuery.of(context).size.height * 0.1,
-              child: categories == null || categories!.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categories!.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isSelected = index;
-                            });
-                          },
-                          child: Expanded(
-                              child: Container(
-                            margin: EdgeInsets.only(top: 30, right: 12),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: _isSelected == index
-                                  ? blueColor
-                                  : transParentColor,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              categories![index].namaKategori.toString(),
-                              style: semiBoldText14.copyWith(
-                                  color: _isSelected == index
-                                      ? whiteColor
-                                      : greyColor),
-                            ),
-                          )),
-                        );
-                      },
-                    ),
-            ),
+             Container(
+               width: MediaQuery.of(context).size.width * 1,
+               height: MediaQuery.of(context).size.height * 0.1,
+               padding: EdgeInsets.symmetric(horizontal: 30),
+               child: categories == null || categories!.isEmpty
+                   ? const Center(
+                       child: CircularProgressIndicator(),
+                     )
+                   : ListView.builder(
+                  
+                       scrollDirection: Axis.horizontal,
+                       itemCount: categories!.length,
+                       itemBuilder: (context, index) {
+                         return InkWell(
+                           onTap: () {
+                             setState(() {
+                               _isSelected = index;
+                             });
+                           },
+                           child: Expanded(
+                             child: Container(
+                               margin: EdgeInsets.only(top: 30, right: 8),
+                               padding: EdgeInsets.symmetric(
+                                   horizontal: 8, vertical: 8),
+                               decoration: BoxDecoration(
+                                 color: _isSelected == index
+                                     ? blueColor
+                                     : transParentColor,
+                                 borderRadius: BorderRadius.circular(6),
+                               ),
+                               child: Text(
+                                 categories![index].namaKategori.toString(),
+                                 style: semiBoldText14.copyWith(
+                                     color: _isSelected == index
+                                         ? whiteColor
+                                         : greyColor),
+                               ),
+                             ),
+                           ),
+                         );
+                       }),
+             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30, top: 30),
+              padding: const EdgeInsets.only(top: 30, left: 30),
               child: Text(
-                'Trending Now',
+                'Buku Trending',
                 style: semiBoldText16.copyWith(color: blackColor),
               ),
             ),
-
-            Container(
-              width: MediaQuery.of(context).size.width * 1,
-              height: MediaQuery.of(context).size.height * 1,
-              child: book == null || book!.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : trendingBook(),
-            ),
-            SizedBox(height: 30),
+            
+            //  Container(
+            //    width: MediaQuery.of(context).size.width * 1,
+            //    height: MediaQuery.of(context).size.height * 1,
+            //    child: book == null || book!.isEmpty
+            //        ? const Center(
+            //            child: CircularProgressIndicator(),
+            //          )
+            //        : ListView.builder(
+            //          scrollDirection: Axis.horizontal,
+            //          itemCount: book!.length,
+            //          itemBuilder: (context, index) {
+            //            return TrendingBook(info: book![index]);
+            //          }
+            //        ),
+            //  ),
+            ListView.builder(
+              padding: EdgeInsets.only(top: 25, right: 25, left: 25),
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: book!.length,
+              itemBuilder: (context, index) {
+                return TrendingBook(info: book![index]);
+              }
+              )
           ],
         ),
-      ),
-      // Button Sample Refresh Bisa DiBlok Comment
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _refreshIndicatorKey.currentState?.show();
-        },
-        // icon: const Icon(Icons.refresh),
-        label: const Icon(Icons.refresh),
       ),
     );
   }

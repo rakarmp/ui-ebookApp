@@ -5,7 +5,7 @@ import 'package:elibmobile/models/book.dart';
 
 class ApiBook {
   Future<List<BookList>?> fetchBook() async {
-    final response = await http.get(Uri.parse("http://elib-api.khansia.co.id:8100/api/berkas"));
+    final response = await http.get(Uri.parse("https://legacy--api.herokuapp.com/api/v1/books"));
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);

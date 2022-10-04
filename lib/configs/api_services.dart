@@ -1,7 +1,9 @@
 import 'package:elibmobile/configs/services.dart';
 import 'package:elibmobile/models/categories.dart';
+import 'package:elibmobile/models/peminjaman.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 import 'package:get_storage/get_storage.dart';
 
 class ApiService {
@@ -50,4 +52,23 @@ class ApiService {
       return response.statusCode;
     }
   }
+  // Future<Peminjaman> createPeminjaman(
+  //     String inputHari, tanggalPeminjaman) async {
+  //   final response = await http.post(
+  //     Uri.parse('peminjamanApi'),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //     body: jsonEncode(<String, String>{
+  //       'inputHari': inputHari,
+  //       'tanggalPeminjaman': tanggalPeminjaman
+  //     }),
+  //   );
+
+  //   if (response.statusCode == 201) {
+  //     return Peminjaman.fronJson(jsonDecode(response.body));
+  //   } else {
+  //     throw 'Gagal Mengirim POST';
+  //   }
+  // }
 }

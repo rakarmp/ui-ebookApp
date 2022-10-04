@@ -1,32 +1,73 @@
 class BookList {
-  int? idBerkas;
-  String? namaBerkas;
-  String? namaKategori;
-  String? namaPenulis;
-  String? namaGambar;
+  int? id;
+  String? title;
+  String? imageUrl;
+  List<Artists>? artists;
+  String? releaseDate;
 
   BookList(
-      {this.idBerkas,
-      this.namaBerkas,
-      this.namaKategori,
-      this.namaPenulis,
-      this.namaGambar});
+      {this.id, this.title, this.imageUrl, this.artists, this.releaseDate});
 
   BookList.fromJson(Map<String, dynamic> json) {
-    idBerkas = json['id_berkas'];
-    namaBerkas = json['nama_berkas'];
-    namaKategori = json['nama_kategori'];
-    namaPenulis = json['nama_penulis'];
-    namaGambar = json['nama_gambar'];
+    id = json['id'];
+    title = json['title'];
+    imageUrl = json['image_url'];
+    if (json['artists'] != null) {
+      artists = <Artists>[];
+      json['artists'].forEach((v) {
+        artists!.add(new Artists.fromJson(v));
+      });
+    }
+    releaseDate = json['release_date'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_berkas'] = this.idBerkas;
-    data['nama_berkas'] = this.namaBerkas;
-    data['nama_kategori'] = this.namaKategori;
-    data['nama_penulis'] = this.namaPenulis;
-    data['nama_gambar'] = this.namaGambar;
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['image_url'] = this.imageUrl;
+    if (this.artists != null) {
+      data['artists'] = this.artists!.map((v) => v.toJson()).toList();
+    }
+    data['release_date'] = this.releaseDate;
+    return data;
+  }
+}
+
+class Artists {
+  Author? author;
+
+  Artists({this.author});
+
+  Artists.fromJson(Map<String, dynamic> json) {
+    author =
+        json['author'] != null ? new Author.fromJson(json['author']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.author != null) {
+      data['author'] = this.author!.toJson();
+    }
+    return data;
+  }
+}
+
+class Author {
+  int? id;
+  String? name;
+
+  Author({this.id, this.name});
+
+  Author.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
     return data;
   }
 }

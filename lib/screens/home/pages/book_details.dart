@@ -34,7 +34,7 @@ class BookDetail extends StatelessWidget {
 
     Widget boookImage() {
       return Hero(
-        tag: data['imageUrl'],
+        tag: '${data['imageUrl']}',
         child: Container(
           height: 267,
           width: 175,
@@ -42,7 +42,7 @@ class BookDetail extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage(data['imageUrl']),
+              image: NetworkImage('${data['imageUrl']}'),
             ),
           ),
         ),
@@ -127,7 +127,9 @@ class BookDetail extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 30),
         child: TextButton(
-          onPressed: () {},
+         onPressed: () {
+          // Isi Dialog/Modal Peminjaman
+         },
           style: TextButton.styleFrom(
             backgroundColor: blueColor,
             shape: RoundedRectangleBorder(
@@ -167,10 +169,10 @@ class BookDetail extends StatelessWidget {
                         style: semiBoldText20.copyWith(color: blackColor2),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Text(
-                        data['writers'],
-                        style: mediumText14.copyWith(color: greyColor),
-                      ),
+                      // Text(
+                      //   data['writers'],
+                      //   style: mediumText14.copyWith(color: greyColor),
+                      // ),
                     ],
                   ),
                 ),
